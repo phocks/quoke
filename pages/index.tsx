@@ -1,11 +1,51 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+import styles from "../styles/Home.module.css";
+import { useEffect } from "react";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBz-a_PELFNE0huG896rnL8UehDptxGobQ",
+  authDomain: "quoke-app.firebaseapp.com",
+  projectId: "quoke-app",
+  storageBucket: "quoke-app.appspot.com",
+  messagingSenderId: "1037824839710",
+  appId: "1:1037824839710:web:f49a271c35a7b34b915e0f",
+  measurementId: "G-ZLXXK97KDB",
+};
 
 export default function Home() {
+  useEffect(() => {
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    // Initialize Firebase Authentication and get a reference to the service
+    const auth = getAuth(app);
+    createUserWithEmailAndPassword(auth, "phocks@gmail.com", "password123")
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  }, []);
+
   return (
     <>
       <Head>
@@ -26,7 +66,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
+              By{" "}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -119,5 +159,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  )
+  );
 }
