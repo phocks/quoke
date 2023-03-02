@@ -26,8 +26,8 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
 
     // JSON data to send in the request body
     const data = {
-      name: "phocks",
-      password: "password",
+      name: username,
+      password: password,
     };
 
     // Configure the request
