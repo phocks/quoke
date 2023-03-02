@@ -1,5 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-// import Counter from "../islands/Counter.tsx";
+import Login from "../islands/Login.tsx";
 
 export default function Home() {
   return (
@@ -8,13 +8,9 @@ export default function Home() {
         <title>Fresh App</title>
       </Head>
       <div class="h-screen w-screen flex justify-center items-center">
-        <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg flex items-center space-x-4">
-          <div class="shrink-0">
-            <img class="h-12 w-12" src="/logo.svg" alt="ChitChat Logo" />
-          </div>
+        <div class="">
           <div>
-            <div class="text-xl font-medium text-black">Quoke</div>
-            <p class="text-slate-500">A work in progress!</p>
+            <Login />
           </div>
         </div>
         {/* <img
