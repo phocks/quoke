@@ -18,7 +18,7 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
     setPassword(event.target.value);
   }
 
-  function submitForm(event: any) {
+  async function submitForm(event: any) {
     event.preventDefault();
     console.log("submit...");
 
@@ -26,9 +26,11 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
 
     // JSON data to send in the request body
     const data = {
-      name: username,
+      username: username,
       password: password,
     };
+
+    console.log(data);
 
     // Configure the request
     const options = {
@@ -36,11 +38,14 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data), //'{"username": "phocks1", "password": "a secure password"}',
+      Accept: "application/json",
+      body: JSON.stringify(data),
     };
 
     // Send the request
-    fetch(url, options).then((response) => console.log(response));
+    const result = await fetch(url, options);
+    const json = await result.json();
+    console.log(json);
   }
 
   return (
@@ -49,7 +54,7 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
         {...props}
         onInput={usernameInput}
         disabled={!IS_BROWSER || props.disabled}
-        class={`block my-4 px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed) ${
+        class={`block my-3 px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed) ${
           props.class ?? ""
         }`}
       />
@@ -64,13 +69,11 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
         }`}
       />
 
-      {/* <button type="submit">Go</button> */}
-
       <button
         type="submit"
-        class="block px-3 py-2 bg-blue-200 text-blue-800 rounded hover:bg-blue-300 active:bg-blue-400"
+        class="block my-3 px-3 py-2 bg-blue-200 text-blue-800 rounded hover:bg-blue-300 active:bg-blue-400"
       >
-        ok{" "}
+        Login
       </button>
     </form>
   );
