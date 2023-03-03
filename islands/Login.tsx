@@ -8,13 +8,11 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
 
   function usernameInput(event: any) {
     event.preventDefault();
-    console.log(event);
     setUsername(event.target.value);
   }
 
   function passworInput(event: any) {
     event.preventDefault();
-    console.log(event);
     setPassword(event.target.value);
   }
 
@@ -51,7 +49,7 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
   return (
     <form onSubmit={submitForm}>
       <input
-        {...props}
+        value={username}
         onInput={usernameInput}
         disabled={!IS_BROWSER || props.disabled}
         class={`block my-3 px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed) ${
@@ -60,7 +58,7 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
       />
 
       <input
-        {...props}
+        value={password}
         onInput={passworInput}
         type={"password"}
         disabled={!IS_BROWSER || props.disabled}
