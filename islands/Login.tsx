@@ -47,32 +47,34 @@ export default function Input(props: JSX.HTMLAttributes<HTMLInputElement>) {
   }
 
   return (
-    <form onSubmit={submitForm}>
-      <input
-        value={username}
-        onInput={usernameInput}
-        disabled={!IS_BROWSER || props.disabled}
-        class={`block my-3 px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed) ${
-          props.class ?? ""
-        }`}
-      />
+    <>
+      <form onSubmit={submitForm}>
+        <input
+          value={username}
+          onInput={usernameInput}
+          disabled={!IS_BROWSER || props.disabled}
+          class={`block my-3 px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed) ${
+            props.class ?? ""
+          }`}
+        />
 
-      <input
-        value={password}
-        onInput={passworInput}
-        type={"password"}
-        disabled={!IS_BROWSER || props.disabled}
-        class={`px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed) ${
-          props.class ?? ""
-        }`}
-      />
+        <input
+          value={password}
+          onInput={passworInput}
+          type={"password"}
+          disabled={!IS_BROWSER || props.disabled}
+          class={`px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed) ${
+            props.class ?? ""
+          }`}
+        />
 
-      <button
-        type="submit"
-        class="block my-3 px-3 py-2 bg-blue-200 text-blue-800 rounded hover:bg-blue-300 active:bg-blue-400"
-      >
-        Login
-      </button>
-    </form>
+        <button
+          type="submit"
+          class="block my-3 px-3 py-2 bg-blue-200 text-blue-800 rounded hover:bg-blue-300 active:bg-blue-400"
+        >
+          Login
+        </button>
+      </form>
+    </>
   );
 }

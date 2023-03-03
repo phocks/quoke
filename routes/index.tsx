@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Fresh App</title>
+        <title>Quoke</title>
       </Head>
       <div class="h-screen w-screen flex justify-center items-center">
         <div class="">
