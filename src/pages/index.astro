@@ -3,12 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 
 import TestComponent from "../components/TestComponent";
+import Icon from "../components/Icon/Icon.svelte";
 
 export const prerender = true;
 ---
 
 <Layout title="Quoke">
-  <main><TestComponent client:idle /></main>
+  <main>
+    <TestComponent client:idle />
+    <Icon client:idle />
+  </main>
 </Layout>
 
 <style>

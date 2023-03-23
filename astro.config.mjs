@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel/edge";
 import react from "@astrojs/react";
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,5 +9,5 @@ export default defineConfig({
   adapter: vercel({
     analytics: false,
   }),
-  integrations: [react()],
+  integrations: [svelte(), react()],
 });
