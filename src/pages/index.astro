@@ -1,20 +1,20 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-
-import TestComponent from "../components/TestComponent";
-import Icon from "../components/Icon/Icon.svelte";
-
-export const prerender = true;
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
-<Layout title="Quoke">
-  <main>
-    <TestComponent client:idle />
-    <Icon client:idle />
-  </main>
-</Layout>
-
-<style>
-  
-</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header title={SITE_TITLE} />
+    <main>
+      
+    </main>
+    <Footer />
+  </body>
+</html>
