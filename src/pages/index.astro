@@ -4,6 +4,16 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+const allUsers = await prisma.user.findMany({
+    include: {
+      posts: true,
+      profile: true,
+    },
+  });
+
 let counter = 0;
 
 if (Astro.cookies.has("counter")) {
@@ -23,6 +33,7 @@ Astro.cookies.set("counter", counter.toString());
     <!-- <Header title={SITE_TITLE} /> -->
     <main>
       <h1>Counter = {counter}</h1>
+      <p>{allUsers[0].email}</p>
     </main>
     <!-- <Footer /> -->
   </body>
