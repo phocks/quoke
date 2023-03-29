@@ -46,17 +46,26 @@ export const get: APIRoute = async ({ params }) => {
 
   const json = { message: "hello" };
 
-  main()
-    .then(async () => {
-      await prisma.$disconnect();
-    })
-    .catch(async (e) => {
-      console.error(e);
-      await prisma.$disconnect();
-      // process.exit(1);
-    });
+  // main()
+  //   .then(async () => {
+  //     await prisma.$disconnect();
+  //   })
+  //   .catch(async (e) => {
+  //     console.error(e);
+  //     await prisma.$disconnect();
+  //     // process.exit(1);
+  //   });
 
-  return new Response(JSON.stringify(json), {
+  const allUsers = await prisma.user.findMany({
+    include: {
+      posts: true,
+      profile: true,
+    },
+  });
+
+  console.dir(allUsers, { depth: null });
+
+  return new Response(JSON.stringify(allUsers), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
