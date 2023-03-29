@@ -3,6 +3,25 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+const allUsers = await prisma.user.findMany({
+    include: {
+      posts: true,
+      profile: true,
+    },
+  });
+
+let counter = 0;
+
+if (Astro.cookies.has("counter")) {
+  const cookie = Astro.cookies.get("counter");
+  counter = cookie.number() + 1;
+}
+
+Astro.cookies.set("counter", counter.toString());
 ---
 
 <!DOCTYPE html>
@@ -11,10 +30,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <Header title={SITE_TITLE} />
+    <!-- <Header title={SITE_TITLE} /> -->
     <main>
-      
+      <h1>Counter = {counter}</h1>
+      <p>{allUsers[0].email}</p>
     </main>
-    <Footer />
+    <!-- <Footer /> -->
   </body>
 </html>
